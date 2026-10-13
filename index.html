@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   StudyPulse &ndash; Plan Smarter. Study Better.
+  </title>
+  <link href="logo-t.png" rel="icon" type="image/png"/>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <aside class="side" id="side">
+   <div class="brand">
+    <img alt="StudyPulse" src="logo-t.png"/>
+    <small>
+     Plan smarter. Study better.
+    </small>
+   </div>
+   <nav aria-label="Main" id="nav">
+    <a data-t="Dashboard" href="#dashboard">
+     <span class="ic">
+      <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20">
+       <rect height="9" rx="1.5" width="7" x="3" y="3">
+       </rect>
+       <rect height="5" rx="1.5" width="7" x="14" y="3">
+       </rect>
+       <rect height="9" rx="1.5" width="7" x="14" y="12">
+       </rect>
+       <rect height="5" rx="1.5" width="7" x="3" y="16">
+       </rect>
+      </svg>
+     </span>
+     Dashboard
+     <span class="badge" hidden="" id="nbadge">
+     </span>
+    </a>
+    <a data-t="Smart Planner" href="#planner">
+     <span class="ic">
+      <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20">
+       <rect height="16" rx="2" width="18" x="3" y="5">
+       </rect>
+       <path d="M3 10h18M8 3v4M16 3v4">
+       </path>
+      </svg>
+     </span>
+     Smart Planner
+    </a>
+    <a data-t="Task History" href="#history">
+     <span class="ic">
+      <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20">
+       <circle cx="12" cy="12" r="9">
+       </circle>
+       <path d="M12 7v5l3 2">
+       </path>
+      </svg>
+     </span>
+     Task History
+    </a>
+    <a data-t="Progress" href="#progress">
+     <span class="ic">
+      <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20">
+       <path d="M3 17l6-6 4 4 8-8">
+       </path>
+       <path d="M15 7h6v6">
+       </path>
+      </svg>
+     </span>
+     Progress
+    </a>
+    <a data-t="Wellness" href="#wellness">
+     <span class="ic">
+      <svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20">
+       <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z">
+       </path>
+      </svg>
+     </span>
+     Wellness
+    </a>
+   </nav>
+   <div class="row" style="margin:0">
+    <button class="btn ghost sm" id="exp" title="Download a backup">
+     Export
+    </button>
+    <label class="btn ghost sm" title="Restore a backup">
+     Import
+     <input accept="application/json" hidden="" id="imp" type="file"/>
+    </label>
+   </div>
+   <button class="btn ghost" id="theme">
+    Dark mode
+   </button>
+  </aside>
+  <div class="main">
+   <header class="bar">
+    <button aria-label="Toggle menu" class="btn ghost" id="menu">
+     ☰ Menu
+    </button>
+    <h1 id="title">
+     Dashboard
+    </h1>
+    <a class="chip xp" href="#progress" id="xpChip">
+     ⚡ 0 XP
+    </a>
+   </header>
+   <main>
+    <section class="page" id="dashboard">
+     <div class="hero">
+      <div>
+       <p class="date" id="hDate">
+       </p>
+       <h2 id="greet">
+       </h2>
+       <p id="quote">
+       </p>
+       <div class="row">
+        <a class="btn" href="#planner" id="addBtn">
+         ＋ Add task
+        </a>
+        <button class="btn glass" id="resume">
+         Continue your progress
+        </button>
+       </div>
+       <div class="streak" id="streak">
+       </div>
+      </div>
+      <div class="hr">
+       <svg aria-hidden="true" class="ring" viewbox="0 0 160 160">
+        <circle class="rt" cx="80" cy="80" r="64">
+        </circle>
+        <circle class="rf" cx="80" cy="80" id="rf" r="64" transform="rotate(-90 80 80)">
+        </circle>
+       </svg>
+       <div class="lv" id="lvText">
+       </div>
+      </div>
+     </div>
+     <div id="guide">
+     </div>
+     <div class="strip" id="stats">
+     </div>
+     <div class="cols asym">
+      <div>
+       <h2>
+        Today's priorities
+       </h2>
+       <div id="prio">
+       </div>
+       <h2>
+        Continue your progress
+       </h2>
+       <div id="cont">
+       </div>
+      </div>
+      <div>
+       <h2>
+        Deadline timeline
+       </h2>
+       <div id="upc">
+       </div>
+       <h2>
+        Alerts
+       </h2>
+       <div id="alerts">
+       </div>
+      </div>
+     </div>
+     <div class="cols">
+      <div>
+       <h2>
+        Activity
+       </h2>
+       <div class="row">
+        <select aria-label="Period" id="per" style="max-width:150px">
+         <option value="7">
+          Last 7 days
+         </option>
+         <option value="14">
+          Last 14 days
+         </option>
+         <option value="30">
+          Last 30 days
+         </option>
+        </select>
+       </div>
+       <div class="cbars" id="weekBars">
+       </div>
+       <div id="dayList" style="margin-top:8px">
+       </div>
+       <h2>
+        Weekly goal
+       </h2>
+       <p class="hint" id="wkTxt">
+       </p>
+       <div class="meter">
+        <i id="wkBar">
+        </i>
+       </div>
+       <p class="hint" id="goalTxt">
+       </p>
+       <label class="hint" style="display:flex;gap:8px;align-items:center">
+        Daily goal (tasks)
+        <input id="gIn" max="20" min="1" style="width:70px" type="number"/>
+       </label>
+       <div class="meter">
+        <i id="goalBar">
+        </i>
+       </div>
+      </div>
+      <div>
+       <h2>
+        Recent achievements
+       </h2>
+       <div id="recent">
+       </div>
+      </div>
+     </div>
+    </section>
+    <section class="page" id="planner">
+     <form class="row" id="qaF">
+      <input aria-label="Quick add task" id="qa" placeholder="Quick add: &ldquo;Read chapter 4 tomorrow&rdquo;, then press Enter"/>
+      <button class="btn sm">
+       Quick add
+      </button>
+     </form>
+     <div aria-label="Pick a day to plan" class="week" id="wkStrip" role="group">
+     </div>
+     <div class="cols">
+      <div>
+       <h2 id="tFormTitle">
+        Add task
+       </h2>
+       <form class="form" id="tForm" novalidate="">
+        <label>
+         Title
+         <input id="tTitle" maxlength="120"/>
+        </label>
+        <label>
+         Subject
+         <input id="tSubj" list="subjList" maxlength="60"/>
+        </label>
+        <datalist id="subjList">
+        </datalist>
+        <label>
+         Description
+         <input id="tNotes" maxlength="200"/>
+        </label>
+        <label>
+         Priority
+         <select id="tPri">
+          <option>
+           Low
+          </option>
+          <option selected="">
+           Medium
+          </option>
+          <option>
+           High
+          </option>
+          <option>
+           Critical
+          </option>
+         </select>
+        </label>
+        <label>
+         Category
+         <select id="tCat">
+          <option>
+           Study
+          </option>
+          <option>
+           Assignment
+          </option>
+          <option>
+           Exam
+          </option>
+          <option>
+           Reading
+          </option>
+          <option>
+           Project
+          </option>
+          <option>
+           Other
+          </option>
+         </select>
+        </label>
+        <label>
+         Due date
+         <input id="tDue" type="date"/>
+        </label>
+        <label>
+         Due time (optional)
+         <input id="tTime" type="time"/>
+        </label>
+        <label>
+         Estimated hours
+         <input id="tEst" min="0.25" step="0.25" type="number" value="1"/>
+        </label>
+        <div class="err" id="tErr" role="alert">
+        </div>
+        <div class="row">
+         <button class="btn">
+          Save task
+         </button>
+         <button class="btn ghost" hidden="" id="tCancel" type="button">
+          Cancel edit
+         </button>
+        </div>
+       </form>
+       <div id="warn">
+       </div>
+      </div>
+      <div>
+       <h2>
+        Plan
+       </h2>
+       <div class="row">
+        <select aria-label="View" id="pv">
+         <option value="today">
+          Today and overdue
+         </option>
+         <option selected="" value="week">
+          Next 7 days
+         </option>
+         <option value="all">
+          All open
+         </option>
+        </select>
+        <input aria-label="Search tasks" id="fq" placeholder="Search tasks" type="search"/>
+       </div>
+       <div class="row">
+        <select aria-label="Status" id="fst">
+         <option value="">
+          Any status
+         </option>
+         <option>
+          Pending
+         </option>
+         <option>
+          In Progress
+         </option>
+        </select>
+        <select aria-label="Priority" id="fpr">
+         <option value="">
+          Any priority
+         </option>
+         <option>
+          Low
+         </option>
+         <option>
+          Medium
+         </option>
+         <option>
+          High
+         </option>
+         <option>
+          Critical
+         </option>
+        </select>
+        <select aria-label="Sort" id="fso">
+         <option value="due">
+          Sort: due
+         </option>
+         <option value="pri">
+          Sort: priority
+         </option>
+         <option value="est">
+          Sort: hours left
+         </option>
+        </select>
+       </div>
+       <div id="tasks">
+       </div>
+      </div>
+     </div>
+    </section>
+    <section class="page" id="history">
+     <div class="row">
+      <input aria-label="Search history" id="hq" placeholder="Search history" type="search"/>
+      <select aria-label="Filter" hidden="" id="hf">
+       <option value="">
+        All activity
+       </option>
+       <option value="completed">
+        Completed
+       </option>
+       <option value="ontime">
+        On time
+       </option>
+       <option value="late">
+        Late
+       </option>
+       <option value="overdue">
+        Overdue
+       </option>
+       <option value="pending">
+        Pending
+       </option>
+      </select>
+     </div>
+     <div class="chips" id="hchips" style="margin-bottom:16px">
+     </div>
+     <div id="hist">
+     </div>
+    </section>
+    <section class="page" id="progress">
+     <div id="pTop">
+     </div>
+     <div class="cols">
+      <div>
+       <h2>
+        Consistency, last 14 days
+       </h2>
+       <div class="bars" id="trend">
+       </div>
+       <div aria-label="On-time rate" class="donut" data-v="&ndash;" id="donut" role="img">
+       </div>
+       <div id="pNums">
+       </div>
+      </div>
+      <div>
+       <h2>
+        Achievements
+       </h2>
+       <div id="badges">
+       </div>
+      </div>
+     </div>
+     <div class="cols">
+      <div>
+       <h2>
+        XP history
+       </h2>
+       <div id="xpH">
+       </div>
+      </div>
+      <div>
+       <h2>
+        How scoring works
+       </h2>
+       <div class="hint prose" id="how">
+       </div>
+      </div>
+     </div>
+    </section>
+    <section class="page" id="wellness">
+     <p class="sub" id="wMsg">
+     </p>
+     <div class="cols">
+      <div>
+       <h2>
+        How are you today?
+       </h2>
+       <div id="wMood">
+       </div>
+       <div id="wEn">
+       </div>
+      </div>
+      <div>
+       <h2>
+        Water and sleep
+       </h2>
+       <div id="wWat">
+       </div>
+      </div>
+     </div>
+     <div class="cols">
+      <div>
+       <h2>
+        Breathe
+       </h2>
+       <div class="breath">
+        <div class="orb" id="orb">
+         <span id="bTxt">
+          Ready
+         </span>
+        </div>
+        <button class="btn ghost" id="bBtn">
+         Start 4-4-6 breathing
+        </button>
+       </div>
+      </div>
+      <div>
+       <h2>
+        Take a break
+       </h2>
+       <p id="tip">
+       </p>
+       <button class="btn ghost sm" id="tipBtn">
+        Another idea
+       </button>
+       <h2>
+        Self-care today
+       </h2>
+       <div id="care">
+       </div>
+      </div>
+     </div>
+     <h2>
+      This week
+     </h2>
+     <div class="cols">
+      <div class="bars" id="moodBars">
+      </div>
+      <div id="wTrend">
+      </div>
+     </div>
+     <p class="hint">
+      Private, optional, and stored only in this browser. Not medical advice.
+     </p>
+    </section>
+   </main>
+  </div>
+  <div aria-live="polite" id="toasts">
+  </div>
+  <script src="script.js">
+  </script>
+ </body>
+</html>
